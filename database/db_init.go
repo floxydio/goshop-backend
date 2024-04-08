@@ -34,5 +34,6 @@ func Connect() {
 }
 
 func migrationDB(db *gorm.DB) {
-	db.AutoMigrate(models.User{})
+	// db.AutoMigrate(models.User{})
+	db.AutoMigrate(models.Product{})
 }

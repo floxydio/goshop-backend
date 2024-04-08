@@ -2,8 +2,8 @@ package main
 
 import (
 	"goshop/database"
+	"goshop/routes"
 	"log"
-	"net/http"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -18,9 +18,6 @@ func main() {
 	}
 	port := os.Getenv("PORT")
 	database.Connect()
-
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
-	})
+	routes.Routes(e)
 	e.Logger.Fatal(e.Start(":" + port))
 }

@@ -9,6 +9,14 @@ type Product struct {
 	Quantity  uint   `json:"quantity" gorm:"column:quantity"`
 }
 
+type ProductForm struct {
+	Name     string `json:"name"`
+	Category string `json:"category"`
+	Price    uint   `json:"price"`
+	Images   string `json:"images"`
+	Quantity uint   `json:"quantity"`
+}
+
 func (Product) TableName() string {
 	return "product"
 }
