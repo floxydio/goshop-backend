@@ -20,4 +20,5 @@ func Routes(routes *echo.Echo) {
 	// Routes
 	routes.GET("/v1/product", productController.FindDataProduct)
 	routes.POST("/v1/product", productController.CreateDataProduct)
+	routes.PUT("/v1/product/:id", productController.UpdateDataProduct)
 }

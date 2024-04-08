@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"fmt"
 	"goshop/database"
 	models "goshop/internal/model"
 
@@ -13,8 +14,8 @@ type ProductDB struct {
 
 type ProductRepo interface {
 	FindProduct(string, string) ([]models.Product, error)
-	CreateProduct(form models.ProductForm) error
-	UpdateProduct(form models.ProductForm, id uint) error
+	CreateProduct(form models.Product) error
+	UpdateProduct(form models.Product, id int) error
 	DeleteProduct(id uint) error
 }
 
@@ -49,15 +50,16 @@ func (p *ProductDB) FindProduct(name string, category string) ([]models.Product,
 	return products, nil
 }
 
-func (p *ProductDB) CreateProduct(form models.ProductForm) error {
-	err := p.PDB.Create(form).Error
+func (p *ProductDB) CreateProduct(form models.Product) error {
+	fmt.Println(form)
+	err := p.PDB.Create(&form).Error
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *ProductDB) UpdateProduct(form models.ProductForm, id uint) error {
+func (p *ProductDB) UpdateProduct(form models.Product, id int) error {
 	err := p.PDB.Model(&models.Product{}).Where("product_id = ?", id).Updates(form).Error
 	if err != nil {
 		return err

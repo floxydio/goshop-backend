@@ -10,11 +10,11 @@ type Product struct {
 }
 
 type ProductForm struct {
-	Name     string `json:"name"`
-	Category string `json:"category"`
-	Price    uint   `json:"price"`
+	Name     string `json:"name" form:"name"`
+	Category string `json:"category" form:"category"`
+	Price    uint   `json:"price" form:"price"`
 	Images   string `json:"images"`
-	Quantity uint   `json:"quantity"`
+	Quantity uint   `json:"quantity" form:"quantity"`
 }
 
 func (Product) TableName() string {

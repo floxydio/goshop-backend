@@ -11,6 +11,14 @@ type User struct {
 	NoTelp   string         `json:"no_telp" gorm:"column:no_telp;type:varchar(20)"`
 }
 
+type UserForm struct {
+	Nama     string `json:"nama" form:"nama"`
+	Username string `json:"username" form:"username"`
+	Password string `json:"password" form:"password"`
+	Email    string `json:"email" form:"email"`
+	NoTelp   string `json:"no_telp" form:"no_telp"`
+}
+
 func (User) TableName() string {
 	return "users"
 }
