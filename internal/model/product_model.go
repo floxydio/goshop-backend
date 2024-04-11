@@ -1,5 +1,7 @@
 package models
 
+var productTable = "product"
+
 type Product struct {
 	ProductID uint   `json:"id" gorm:"primaryKey;column:product_id"`
 	Name      string `json:"name" gorm:"column:name;type:varchar(255)"`
@@ -18,5 +20,5 @@ type ProductForm struct {
 }
 
 func (Product) TableName() string {
-	return "product"
+	return productTable
 }

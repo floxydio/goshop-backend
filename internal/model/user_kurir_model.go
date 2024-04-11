@@ -1,5 +1,7 @@
 package models
 
+var userKurirTable = "users_kurir"
+
 type UserKurir struct {
 	ID             uint   `json:"id" gorm:"primaryKey;column:id"`
 	Nama           string `json:"nama" gorm:"column:nama;type:varchar(255)"`
@@ -21,5 +23,5 @@ type UserKurirForm struct {
 }
 
 func (UserKurir) TableName() string {
-	return "users_kurir"
+	return userKurirTable
 }
