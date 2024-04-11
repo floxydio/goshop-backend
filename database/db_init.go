@@ -22,7 +22,10 @@ func Connect() {
 
 	destination := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", dbConfig.Username, dbConfig.Password, dbConfig.IP, dbConfig.Port, dbConfig.
 		NameDB)
-	db, err := gorm.Open(mysql.Open(destination), &gorm.Config{})
+	db, err := gorm.Open(mysql.Open(destination), &gorm.Config{
+		PrepareStmt:            true,
+		SkipDefaultTransaction: true,
+	})
 
 	if err != nil {
 		panic("Cannot Connect Database")
@@ -30,7 +33,7 @@ func Connect() {
 
 	DbClient = db
 	// Comment Migration, if dont use
-	migrationDB(db)
+	// migrationDB(db)
 }
 
 func migrationDB(db *gorm.DB) {
